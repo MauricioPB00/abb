@@ -1,0 +1,177 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+
+
+typedef struct Nó{
+    dado int;
+    struct Nó *esquerda;
+    struct Nó *direita;
+}Nó;
+
+raiz de estrutura typedef{
+    Nó *raiz;
+}Raiz;
+
+
+Root* criarRaiz();
+Nó* criarNode(int);
+void insira(Root*, int);
+Nó* removedor(Nó*,int);
+Nó* Achamin(Nó*);
+int verificaFolha(Nó*);
+int verificaVazia(Nó*);
+void preOrdem(Nó*);     
+void emOrdem(Nó*);      
+void posOrdem(Nó*);
+
+
+int main(){
+   Root* raiz = criarRaiz();
+    insira(raiz,2);
+    insira(raiz,1);
+    inserir(raiz,7);
+    inserir(raiz,4);
+    insira(raiz,5);
+    insira(raiz,3);
+    insira(raiz,8);
+    
+   
+   preOrdem(raiz->root);
+   printf("\n");
+   emOrdem(raiz->root);
+   printf("\n");
+   posOrdem(raiz->root);
+   
+   
+   
+  
+}
+
+
+
+Root* criarRaiz(){
+    Root* root = (Root*) malloc(sizeof(Root));
+    raiz->raiz = NULL;
+    raiz de retorno;
+}
+
+Nó* criarNode(int dado){
+    Nó* nó = (Nó*) malloc(sizeof(Nó));
+    nó->esquerda = NULL;
+    nó->direita = NULL;
+    nó->dado = dado;
+    nó de retorno;
+}
+
+void insira(Root* raiz, int dado){
+    Nó* auxiliar;
+    
+        if(verificaVazia(raiz->root)){
+            raiz->root = criarNode(dado);
+        }senão{
+            auxiliar = raiz->raiz;
+            
+            enquanto(1){
+                if(dado > auxiliar->dado){
+                    if(verificaVazia(auxiliar->direita)){
+                        auxiliar->direita = criarNode(dado);
+                        Retorna;
+                    }senão{
+                        auxiliar = auxiliar->direita;
+                    }    
+                }senão{
+                    if(verificaVazia(auxiliar->esquerda)){
+                        auxiliar->esquerda = criarNode(dado);
+                        Retorna;
+                    }senão{
+                        auxiliar = auxiliar->esquerda;
+                    }
+                }
+            }
+        }
+        
+}
+
+Node* removedor(Node* node, int dado){
+     Nó *auxiliar;
+    if(nó == NULL){
+        printf("Elemento não encontrado");
+    }
+    else if(dado < node->dado){
+        nó->esquerda = removedor(nó->esquerda, dado);
+    }
+    else if(dado > nó->dado){
+        nó->direita = removedor(nó->direita, dado);
+    }
+    senão{
+        if(nó->direita && nó->esquerda){
+            auxiliar = Achamin(nó->direita);
+            nó->dado = auxiliar->dado;
+            node->direita = removedor(node->direita,auxiliar->dado);
+        }
+        senão{
+            auxiliar = nó;
+            if(nó->esquerda == NULL)
+                nó = nó->direita;
+            else if(node->direita == NULL)
+                nó = nó->esquerda;
+            grátis(auxiliar);
+        }
+    }
+    nó de retorno;
+}
+
+Nó* Achamin(Nó* nó){
+    Nó* auxiliar;
+    auxiliar = nó;
+    
+    while(auxiliar->esquerda != NULL){
+    auxiliar = auxiliar->esquerda;
+    }
+    retorno auxiliar;
+}
+
+int verificaFolha(Nó* nó){
+  if (nó->esquerda == NULL && nó->direita == NULL){
+      retornar 1;
+  }senão{
+      retornar 0;
+  }
+
+}
+
+int verificaVazia(Node* node){
+  if (nó == NULL){
+       retornar 1;
+  }senão{
+      retornar 0;
+  }
+}
+
+void preOrdem(Nó* raiz){
+  if (!verificaVazia(raiz)){
+    printf("[%i] ", raiz->dado);
+    emOrdem(raiz->esquerda);
+    emOrdem(raiz->direita);
+  }
+  printf("|");
+}
+
+
+void emOrdem(Nó* raiz){
+  if (!verificaVazia(raiz)){
+    emOrdem(raiz->esquerda);
+    printf("[%i] ", raiz->dado);
+    emOrdem(raiz->direita);
+  }
+}
+
+
+void posOrdem(Nó* raiz){
+  if (!verificaVazia(raiz)){
+    emOrdem(raiz->esquerda);
+    emOrdem(raiz->direita);
+    printf("[%i] ", raiz->dado);
+  }
+}
